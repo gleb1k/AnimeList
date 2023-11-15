@@ -54,6 +54,7 @@ android {
 dependencies {
 
     implementation(project(":feature:home:api"))
+    implementation(project(":feature:home:internal"))
 
     implementation(project(":core:widget"))
     implementation(project(":core:utils"))
@@ -61,6 +62,16 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:navigation"))
     implementation(project(":core:presentation"))
+
+    implementation(libs.koin)
+    implementation(libs.koin.compose)
+
+    implementation(libs.timber)
+
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

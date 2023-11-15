@@ -19,9 +19,12 @@ android {
 
 dependencies {
 
-//    implementation(libs.core.ktx)
-//    implementation(libs.appcompat)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 //    implementation(libs.material)
+
 //    testImplementation(libs.junit)
 //    androidTestImplementation(libs.androidx.test.ext.junit)
 //    androidTestImplementation(libs.espresso.core)

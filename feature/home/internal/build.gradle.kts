@@ -31,6 +31,7 @@ dependencies {
     implementation(libs.koin)
     implementation(libs.koin.compose)
 
+    implementation(libs.timber)
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.test.ext.junit)

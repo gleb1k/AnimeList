@@ -24,4 +24,11 @@ dependencies {
     kapt(libs.room.kapt)
 
     implementation(libs.kotlinx.coroutines.core)
+
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.koin.compose)
+    implementation(libs.koin)
+
+    implementation(libs.kotlinx.coroutines.core)
 }

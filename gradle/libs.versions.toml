@@ -34,7 +34,7 @@ koin = "3.4.0"
 kotlinxCoroutines = "1.7.3"
 kotlinxDatetime = "0.4.0"
 kotlinxImmutable = "0.3.5"
-kotlinxSerializationJson = "1.5.1"
+kotlinxSerializationJson = "1.6.0"
 
 mockk = "1.12.4"
 okhttp = "4.11.0"
@@ -50,7 +50,9 @@ core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
-androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -85,7 +87,13 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 
-ktor = { group = "io.ktor", name = "ktor-server-netty", version.ref = "ktor" }
+ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-content-negotation =  { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor"}
+ktor-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+ktor-serialization =  { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor"}
+ktor-android =  { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor"}
+ktor-logging =  { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor"}
+ktor-mock =  { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor"}
 
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-kapt = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
