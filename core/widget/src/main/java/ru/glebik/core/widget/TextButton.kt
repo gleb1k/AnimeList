@@ -12,7 +12,7 @@ import ru.glebik.core.designsystem.theme.AppTheme
 @Composable
 fun TextButton(
     modifier: Modifier = Modifier,
-    title: String = "",
+    text: String = "",
     textStyle: TextStyle = AppTheme.typography.body,
     onClick: () -> Unit,
 ) {
@@ -26,7 +26,7 @@ fun TextButton(
         )
     ) {
         Text(
-            text = title,
+            text = text,
             style = textStyle,
             modifier = Modifier
                 .padding(horizontal = AppTheme.padding.horizontalMedium)

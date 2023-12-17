@@ -34,7 +34,6 @@ android {
 
 dependencies {
     api(libs.core.ktx)
-    api(libs.material3)
     api(libs.androidx.appcompat)
     api(libs.activity.compose)
     api(platform(libs.compose.bom))
@@ -42,6 +41,9 @@ dependencies {
     api(libs.compose.graphics)
     api(libs.compose.material.icons)
     api(libs.compose.tooling.preview)
+    api(libs.material3.compose)
+
+
 
     debugApi(libs.compose.tooling)
 

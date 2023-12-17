@@ -1,6 +1,6 @@
 package ru.glebik.core.designsystem
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

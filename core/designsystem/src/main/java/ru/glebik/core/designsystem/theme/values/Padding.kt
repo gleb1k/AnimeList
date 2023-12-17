@@ -9,6 +9,9 @@ internal val basePadding = Padding(
     verticalMedium = 8.dp,
     horizontalMedium = 8.dp,
 
+    verticalBig = 12.dp,
+    horizontalBig = 12.dp,
+
     verticalLarge = 16.dp,
     horizontalLarge = 16.dp,
 )

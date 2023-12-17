@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
 }
 
+
 android {
     namespace = "ru.glebik.core.navigation"
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -19,10 +20,18 @@ android {
 
 dependencies {
 
-//    implementation(libs.core.ktx)
-//    implementation(libs.appcompat)
-//    implementation(libs.material)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.test.ext.junit)
-//    androidTestImplementation(libs.espresso.core)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.appcompat)
+
+    api(libs.voyager.core)
+    api(libs.voyager.bs)
+    api(libs.voyager.tab)
+    api(libs.voyager.koin)
+    api(libs.voyager.androidx)
+    api(libs.voyager.transitions)
+    api(libs.voyager.livedata)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }

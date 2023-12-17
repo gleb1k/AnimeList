@@ -25,11 +25,20 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
-    implementation(libs.koin)
-    implementation(libs.koin.compose)
+    implementation(project(":feature:anime:api"))
 
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.ktor.serialization)
+    api(project(":core:widget"))
+    api(project(":core:utils"))
+    api(project(":core:db"))
+    api(project(":core:network"))
+    api(project(":core:navigation"))
+    api(project(":core:presentation"))
+
+    api(libs.koin)
+    api(libs.koin.compose)
+
+    api(libs.kotlinx.serialization.json)
+    api(libs.ktor.serialization)
 
     testImplementation(libs.junit)
 

@@ -23,9 +23,11 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-//    implementation(libs.material)
 
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.test.ext.junit)
-//    androidTestImplementation(libs.espresso.core)
+    implementation(libs.koin)
+    implementation(libs.koin.compose)
+
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }

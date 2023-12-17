@@ -56,6 +56,18 @@ dependencies {
     implementation(project(":feature:home:api"))
     implementation(project(":feature:home:internal"))
 
+    implementation(project(":feature:profile:api"))
+    implementation(project(":feature:profile:internal"))
+
+    implementation(project(":feature:auth:api"))
+    implementation(project(":feature:auth:internal"))
+
+    implementation(project(":feature:search:api"))
+    implementation(project(":feature:search:internal"))
+
+    implementation(project(":feature:anime:api"))
+    implementation(project(":feature:anime:internal"))
+
     implementation(project(":core:widget"))
     implementation(project(":core:utils"))
     implementation(project(":core:db"))

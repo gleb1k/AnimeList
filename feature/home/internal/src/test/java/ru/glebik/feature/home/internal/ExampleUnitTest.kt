@@ -1,6 +1,6 @@
 package ru.glebik.feature.home.internal
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

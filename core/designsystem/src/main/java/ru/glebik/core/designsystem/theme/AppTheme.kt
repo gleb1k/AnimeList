@@ -1,16 +1,11 @@
 package ru.glebik.core.designsystem.theme
 
 import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import ru.glebik.core.designsystem.theme.values.Colors
@@ -30,25 +25,25 @@ fun AppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors : Colors = when {
+    val colors: Colors = when {
         darkTheme -> baseDarkPalette
         else -> baseLightPalette
     }
 
-    val typography : Typography = when {
+    val typography: Typography = when {
         darkTheme -> baseDarkTypography
-        else ->  baseLightTypography
+        else -> baseLightTypography
     }
 
-    val padding : Padding = basePadding
+    val padding: Padding = basePadding
 
-    val cornerShape : CornerShape = baseCornerShape
+    val cornerShape: CornerShape = baseCornerShape
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colors.primary.toArgb()
+            window.statusBarColor = colors.background.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }

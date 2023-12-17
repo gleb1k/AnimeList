@@ -15,13 +15,30 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeKotlinCompiler.get()
+    }
 }
 
 dependencies {
 
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.lifecycle.viewModelCompose)
+    api(libs.mvikotlin)
+    api(libs.mvikotlin.main)
+    api(libs.mvikotlin.logging)
+    api(libs.mvikotlin.extensions.coroutines)
+    api(libs.mvikotlin.timetravel)
+
+    api(libs.androidx.lifecycle.runtime.compose)
+    api(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.viewModelCompose)
+
+    api(libs.koin)
+    api(libs.koin.compose)
+
+    implementation(libs.voyager.core)
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)

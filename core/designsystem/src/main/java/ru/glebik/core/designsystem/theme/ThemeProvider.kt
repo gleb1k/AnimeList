@@ -5,6 +5,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import ru.glebik.core.designsystem.theme.values.Colors
 import ru.glebik.core.designsystem.theme.values.CornerShape
 import ru.glebik.core.designsystem.theme.values.Padding
+import ru.glebik.core.designsystem.theme.values.Typography
 
 // Use this class to take colors, fonts, paddings, and etc...
 object AppTheme {
@@ -13,15 +14,15 @@ object AppTheme {
         @Composable
         get() = LocalCustomColors.current
 
-    val typography: ru.glebik.core.designsystem.theme.values.Typography
+    val typography: Typography
         @Composable
         get() = LocalCustomTypography.current
 
-    val padding : Padding
+    val padding: Padding
         @Composable
         get() = LocalCustomPadding.current
 
-    val cornerShape : CornerShape
+    val cornerShape: CornerShape
         @Composable
         get() = LocalCustomCornerShape.current
 }
@@ -30,9 +31,10 @@ val LocalCustomColors = staticCompositionLocalOf<Colors> {
     error("No colors provided")
 }
 
-val LocalCustomTypography = staticCompositionLocalOf<ru.glebik.core.designsystem.theme.values.Typography> {
-    error("No font provided")
-}
+val LocalCustomTypography =
+    staticCompositionLocalOf<Typography> {
+        error("No font provided")
+    }
 
 val LocalCustomPadding = staticCompositionLocalOf<Padding> {
     error("No padding provided")

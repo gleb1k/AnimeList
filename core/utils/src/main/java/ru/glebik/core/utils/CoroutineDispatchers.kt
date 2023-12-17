@@ -2,15 +2,19 @@ package ru.glebik.core.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-interface CoroutineDispatchers {
-    val main: CoroutineDispatcher
-    val io: CoroutineDispatcher
-    val default: CoroutineDispatcher
+
+//ИНТЕРНАЛ
+val dispatchersModule = module {
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.MAIN)) { Dispatchers.Main }
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.IO)) { Dispatchers.IO }
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.DEFAULT)) { Dispatchers.Default }
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.UNCONFINED)) { Dispatchers.Unconfined }
 }
 
-class CoroutineDispatchersImpl : CoroutineDispatchers {
-    override val main: CoroutineDispatcher = Dispatchers.Main
-    override val io: CoroutineDispatcher = Dispatchers.IO
-    override val default: CoroutineDispatcher = Dispatchers.Default
+//АПИ
+enum class CoroutineDispatchers {
+    MAIN, IO, UNCONFINED, DEFAULT,
 }
