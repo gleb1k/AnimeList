@@ -21,6 +21,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
 }
 
 dependencies {

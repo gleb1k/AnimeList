@@ -9,6 +9,10 @@ android {
     namespace = "ru.glebik.core.db"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -20,6 +24,10 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:anime:api"))
+    implementation(project(":feature:auth:api"))
+
+    implementation(libs.room.ktx)
     implementation(libs.room)
     kapt(libs.room.kapt)
 

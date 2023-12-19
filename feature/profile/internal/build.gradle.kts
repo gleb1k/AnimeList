@@ -21,11 +21,15 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
 }
 
 dependencies {
 
     implementation(project(":feature:profile:api"))
+    implementation(project(":feature:auth:api"))
 
     implementation(project(":core:widget"))
     implementation(project(":core:utils"))

@@ -44,7 +44,7 @@ ktor = "2.3.5"
 mviKotlin = "3.3.0"
 
 retrofitKotlinxSerializationJson = "1.0.0"
-room = "2.5.2"
+room = "2.6.1"
 timber = "5.0.1"
 voyager = "1.0.0-rc10"
 
@@ -105,7 +105,7 @@ mvikotlin-logging = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-loggi
 mvikotlin-timetravel = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-timetravel", version.ref = "mviKotlin" }
 mvikotlin-extensions-coroutines = { group = "com.arkivanov.mvikotlin", name = "mvikotlin-extensions-coroutines", version.ref = "mviKotlin" }
 
-
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-kapt = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 

@@ -7,7 +7,9 @@ plugins {
 android {
     namespace = "ru.glebik.core.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
-
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -43,4 +45,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
 }

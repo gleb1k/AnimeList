@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.serialization)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -16,6 +17,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
 
 }
 
@@ -27,10 +31,12 @@ dependencies {
 
     api(project(":core:widget"))
     api(project(":core:utils"))
-    api(project(":core:db"))
     api(project(":core:network"))
     api(project(":core:navigation"))
     api(project(":core:presentation"))
+
+    api(libs.room)
+    kapt(libs.room.kapt)
 
     api(libs.koin)
     api(libs.koin.compose)

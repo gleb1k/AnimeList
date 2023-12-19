@@ -2,34 +2,28 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
     namespace = "ru.glebik.feature.auth.api"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
-    defaultConfig {
-        minSdk = 26
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeKotlinCompiler.get()
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+    defaultConfig {
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 }
 
@@ -38,6 +32,16 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    api(project(":core:widget"))
+    api(project(":core:utils"))
+    api(project(":core:network"))
+    api(project(":core:navigation"))
+    api(project(":core:presentation"))
+
+    api(libs.room)
+    kapt(libs.room.kapt)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

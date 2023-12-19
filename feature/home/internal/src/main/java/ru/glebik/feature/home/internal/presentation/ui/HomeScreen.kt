@@ -57,7 +57,7 @@ object HomeScreen : Screen {
 
         when (label) {
             null -> Unit
-            is HomeStore.Label.NavigateToDetails -> TODO()
+            is HomeStore.Label.NavigateToDetails -> {}
         }
 
         HomeView(

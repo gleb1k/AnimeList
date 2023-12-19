@@ -1,5 +1,6 @@
 package ru.glebik.feature.profile.internal.presentation.viewmodel
 
+import android.service.autofill.UserData
 import com.arkivanov.mvikotlin.core.store.Store
 
 //должен быть в апи
