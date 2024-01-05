@@ -12,6 +12,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 
 import org.koin.dsl.module
 import ru.glebik.core.network.NetworkConstants
@@ -34,9 +35,13 @@ val networkModule = module {
                     followRedirects(true)
                 }
             }
+
             install(ContentNegotiation) {
-                json()
+                json(Json {
+                    ignoreUnknownKeys = true
+                })
             }
+
             install(Logging) {
                 logger = object : Logger {
                     override fun log(message: String) {

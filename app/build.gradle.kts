@@ -68,6 +68,10 @@ dependencies {
     implementation(project(":feature:anime:api"))
     implementation(project(":feature:anime:internal"))
 
+    implementation(project(":feature:detail:api"))
+    implementation(project(":feature:detail:internal"))
+
+
     implementation(project(":core:widget"))
     implementation(project(":core:utils"))
     implementation(project(":core:db"))

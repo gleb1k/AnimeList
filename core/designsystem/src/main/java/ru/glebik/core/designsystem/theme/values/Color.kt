@@ -17,6 +17,8 @@ internal val baseLightPalette = Colors(
 
     tint = Color(0xFFC8C8C8),
     background = Color(0xFFFFFFFF),
+
+    onButton = Color(0xFFC8C8C8),
 )
 
 
@@ -35,4 +37,6 @@ internal val baseDarkPalette = Colors(
 
     tint = Color(0xFFC8C8C8),
     background = Color(0xFFFFFFFF),
+
+    onButton = Color(0xFFC8C8C8),
 )

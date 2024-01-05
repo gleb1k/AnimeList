@@ -64,6 +64,12 @@ internal val baseLightTypography = Typography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold
     ),
+    onButton = TextStyle(
+        color = baseLightPalette.onButton,
+        fontSize = 22.sp,
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold
+    ),
 )
 
 //region example
@@ -204,6 +210,12 @@ internal val baseDarkTypography = Typography(
     topBar = TextStyle(
         color = baseDarkPalette.onSurface,
         fontSize = 20.sp,
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold
+    ),
+    onButton = TextStyle(
+        color = baseLightPalette.onButton,
+        fontSize = 22.sp,
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold
     ),

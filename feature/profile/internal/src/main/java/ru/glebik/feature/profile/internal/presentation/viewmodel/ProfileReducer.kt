@@ -21,5 +21,10 @@ internal class ProfileReducer : Reducer<ProfileStore.State, ProfileStoreFactory.
             isLoading = false,
             userData = msg.userData,
         )
+
+        is ProfileStoreFactory.Message.SetIsAuth -> copy(
+            isLoading = false,
+            isAuth = msg.isAuth
+        )
     }
 }

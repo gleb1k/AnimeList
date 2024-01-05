@@ -20,6 +20,8 @@ data class Colors(
 
     val tint: Color,
     val background: Color,
+
+    val onButton: Color,
 )
 
 data class Typography(
@@ -35,6 +37,7 @@ data class Typography(
 
     val error: TextStyle,
     val topBar: TextStyle,
+    val onButton: TextStyle,
 )
 
 data class Padding(
@@ -48,7 +51,7 @@ data class Padding(
     val horizontalBig: Dp,
 
     val verticalLarge: Dp,
-    val horizontalLarge: Dp,
+    val horizontalLargeBase: Dp,
 )
 
 data class CornerShape(

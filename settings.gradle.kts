@@ -39,3 +39,6 @@ include(":feature:search:internal")
 
 include(":feature:anime:api")
 include(":feature:anime:internal")
+
+include(":feature:detail:api")
+include(":feature:detail:internal")

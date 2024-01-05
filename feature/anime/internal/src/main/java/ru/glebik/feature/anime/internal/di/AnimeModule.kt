@@ -3,10 +3,7 @@ package ru.glebik.feature.anime.internal.di
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import ru.glebik.core.utils.CoroutineDispatchers
-import ru.glebik.core.utils.mapper.ResponseDomainMapper
-import ru.glebik.feature.anime.api.mapper.AnimeFullResponseMapper
-import ru.glebik.feature.anime.api.mapper.AnimeRecommendationResponseMapper
-import ru.glebik.feature.anime.api.mapper.AnimeSearchResponseMapper
+import ru.glebik.core.utils.mapper.ResponseMapper
 import ru.glebik.feature.anime.api.model.domain.AnimeFull
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
 import ru.glebik.feature.anime.api.model.domain.AnimeSearch
@@ -20,18 +17,21 @@ import ru.glebik.feature.anime.api.usecase.GetAnimeRecommendationsUseCase
 import ru.glebik.feature.anime.api.usecase.SearchAnimeUseCase
 import ru.glebik.feature.anime.internal.data.AnimeRepositoryImpl
 import ru.glebik.feature.anime.internal.data.AnimeServiceImpl
+import ru.glebik.feature.anime.internal.data.mapper.AnimeFullResponseMapper
+import ru.glebik.feature.anime.internal.data.mapper.AnimeRecommendationResponseMapper
+import ru.glebik.feature.anime.internal.data.mapper.AnimeSearchResponseMapper
 import ru.glebik.feature.anime.internal.domain.GetAnimeFullUseCaseImpl
 import ru.glebik.feature.anime.internal.domain.GetAnimeRecommendationsUseCaseImpl
 import ru.glebik.feature.anime.internal.domain.SearchAnimeUseCaseImpl
 
 val animeModule = module {
-    single<ResponseDomainMapper<AnimeFullResponse, AnimeFull>>(named(AnimeFullResponseMapper.TAG)) {
+    single<ResponseMapper<AnimeFullResponse, AnimeFull>>(named(AnimeFullResponseMapper.TAG)) {
         AnimeFullResponseMapper()
     }
-    single<ResponseDomainMapper<AnimeRecommendationResponseItem, AnimeRecommendation>>(
+    single<ResponseMapper<AnimeRecommendationResponseItem, AnimeRecommendation>>(
         named(AnimeRecommendationResponseMapper.TAG)
     ) { AnimeRecommendationResponseMapper() }
-    single<ResponseDomainMapper<AnimeSearchResponseItem, AnimeSearch>>(
+    single<ResponseMapper<AnimeSearchResponseItem, AnimeSearch>>(
         named(AnimeSearchResponseMapper.TAG)
     ) {
         AnimeSearchResponseMapper()

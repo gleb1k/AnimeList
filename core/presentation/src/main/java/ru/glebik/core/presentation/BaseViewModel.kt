@@ -24,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class BaseViewModel : ViewModel() {
-
+    //todo exceptions handler
     private val handler = CoroutineExceptionHandler { _, throwable ->
         onException(throwable)
     }
@@ -57,7 +57,7 @@ abstract class MviScreenModel<in Intent : Any, out State : Any, out Label : Any>
     private val binder: Binder
 
     init {
-        binder = bind(Dispatchers.Main.immediate) {
+        binder = bind(Dispatchers.IO) {
             store.states bindTo (::acceptState)
             store.labels bindTo (::acceptLabel)
         }

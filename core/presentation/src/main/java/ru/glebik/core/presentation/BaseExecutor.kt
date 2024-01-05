@@ -9,7 +9,7 @@ abstract class BaseExecutor<in Intent : Any, in Action : Any, in State : Any, Me
     mainContext: CoroutineContext = Dispatchers.Main,
 ) : CoroutineExecutor<Intent, Action, State, Message, Label>(mainContext = mainContext) {
 
-    //todo launchsafe
+    //TODO launchsafe
     final override fun executeIntent(intent: Intent, getState: () -> State) {
         scope.launch {
             suspendExecuteIntent(intent, getState)

@@ -10,7 +10,10 @@ import ru.glebik.core.network.di.networkModule
 import ru.glebik.core.presentation.di.presentationModule
 import ru.glebik.core.utils.dispatchersModule
 import ru.glebik.feature.anime.internal.di.animeModule
+import ru.glebik.feature.auth.internal.di.authModule
 import ru.glebik.feature.auth.internal.di.authScreenModule
+import ru.glebik.feature.detail.internal.di.detailModule
+import ru.glebik.feature.detail.internal.di.detailScreenModule
 import ru.glebik.feature.home.internal.di.homeModule
 import ru.glebik.feature.home.internal.di.homeScreenModule
 import ru.glebik.feature.profile.internal.di.profileModule
@@ -27,6 +30,7 @@ class App : Application() {
             profileScreenModule()
             authScreenModule()
             searchScreenModule()
+            detailScreenModule()
         }
 
         startKoin {
@@ -40,9 +44,11 @@ class App : Application() {
                     databaseModule,
                     animeModule,
                     presentationModule,
+                    authModule,
 
                     homeModule,
-                    profileModule
+                    profileModule,
+                    detailModule,
                 )
             )
         }

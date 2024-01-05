@@ -3,7 +3,7 @@ package ru.glebik.feature.anime.internal.data
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import ru.glebik.core.utils.ResultWrapper
-import ru.glebik.core.utils.mapper.ResponseDomainMapper
+import ru.glebik.core.utils.mapper.ResponseMapper
 import ru.glebik.feature.anime.api.model.domain.AnimeFull
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
 import ru.glebik.feature.anime.api.model.domain.AnimeSearch
@@ -17,9 +17,9 @@ internal class AnimeRepositoryImpl(
     private val animeService: AnimeService,
     private val ioDispatcher: CoroutineDispatcher,
 
-    private val animeFullResponseMapper: ResponseDomainMapper<AnimeFullResponse, AnimeFull>,
-    private val animeSearchResponseMapper: ResponseDomainMapper<AnimeSearchResponseItem, AnimeSearch>,
-    private val animeRecommendationResponseMapper: ResponseDomainMapper<AnimeRecommendationResponseItem, AnimeRecommendation>
+    private val animeFullResponseMapper: ResponseMapper<AnimeFullResponse, AnimeFull>,
+    private val animeSearchResponseMapper: ResponseMapper<AnimeSearchResponseItem, AnimeSearch>,
+    private val animeRecommendationResponseMapper: ResponseMapper<AnimeRecommendationResponseItem, AnimeRecommendation>
 ) : AnimeRepository {
 
     override suspend fun searchAnime(q: String): ResultWrapper<List<AnimeSearch>> =

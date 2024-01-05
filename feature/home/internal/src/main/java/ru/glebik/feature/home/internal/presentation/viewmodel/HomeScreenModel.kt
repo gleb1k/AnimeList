@@ -3,7 +3,7 @@ package ru.glebik.feature.home.internal.presentation.viewmodel
 import ru.glebik.core.presentation.MviScreenModel
 
 
-class MviHomeScreenModel(
+class HomeScreenModel(
     private val store: HomeStore,
 ) : MviScreenModel<HomeStore.Intent, HomeStore.State, HomeStore.Label>(
     store

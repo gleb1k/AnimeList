@@ -13,5 +13,5 @@ internal val basePadding = Padding(
     horizontalBig = 12.dp,
 
     verticalLarge = 16.dp,
-    horizontalLarge = 16.dp,
+    horizontalLargeBase = 16.dp,
 )
