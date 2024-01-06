@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
+
 }
 
 android {
@@ -46,4 +47,8 @@ dependencies {
 
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 }

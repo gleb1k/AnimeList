@@ -2,12 +2,14 @@ package ru.glebik.feature.auth.internal.presentation.signin
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.registry.rememberScreen
@@ -73,39 +75,42 @@ object SignInScreen : Screen {
             ) {
                 BackAppBar(onBackClick)
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = AppTheme.padding.horizontalLargeBase),
                 ) {
-
                     Text(
-                        text = "Вход в профиль",
+                        text = "Sign in",
                         style = AppTheme.typography.headerBold
                     )
-
+                    Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                    Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
                     //TODO Я НЕ ПОНИМАЮ ПОЧЕМУ ОТСТАЕТ ЗАПИСЬ, КАК ФИКСИТЬ ТОЖЕ ХЗ
-                    EmailTextField(
-                        value = state.queryEmail
+                    Column(
+                        Modifier.fillMaxWidth()
                     ) {
-                        onQueryEmailChange(it)
-
+                        EmailTextField(
+                            value = state.queryEmail
+                        ) {
+                            onQueryEmailChange(it)
+                        }
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        PasswordTextField(
+                            value = state.queryPassword
+                        ) {
+                            onQueryPasswordChange(it)
+                        }
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        Text(text = "Error: ${state.isError}")
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        BaseTextButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "Sign in"
+                        ) {
+                            onSignInClick()
+                        }
                     }
-                    PasswordTextField(
-                        value = state.queryPassword
-                    ) {
-                        onQueryPasswordChange(it)
-                    }
-
-                    Text(text = state.isError.toString())
-
-                    BaseTextButton(
-                        text = "Войти"
-                    ) {
-                        onSignInClick()
-                    }
-
                 }
             }
         }

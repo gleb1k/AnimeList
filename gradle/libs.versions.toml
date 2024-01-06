@@ -1,4 +1,5 @@
 [versions]
+firebaseBom = "32.7.0"
 minSdk = "26"
 compileSdk = "34"
 targetSdk = "34"
@@ -26,10 +27,13 @@ androidxWindowManager = "1.0.0"
 coil = "2.3.0"
 detekt = "1.22.0"
 googleService = "4.4.0"
-firebaseAnalytics = "21.2.0"
-firebaseCrashlytics = "18.3.2"
-firebasePref = "20.2.0"
+firebaseAnalytics = "21.5.0"
+firebaseCrashlytics = "18.6.0"
+firebasePref = "20.5.1"
 firebaseRemoteConfig = "21.2.0"
+
+firebaseCrashlyticsPlugin = "2.9.9"
+firebasePrefPlugin = "1.4.2"
 
 koin = "3.4.0"
 
@@ -43,7 +47,6 @@ okhttp = "4.11.0"
 ktor = "2.3.5"
 mviKotlin = "3.3.0"
 
-retrofitKotlinxSerializationJson = "1.0.0"
 room = "2.6.1"
 timber = "5.0.1"
 voyager = "1.0.0-rc10"
@@ -64,6 +67,11 @@ compose-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebaseCrashlytics" }
+firebase-perf = { group = "com.google.firebase", name = "firebase-perf", version.ref = "firebasePref" }
 
 ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
@@ -143,6 +151,9 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 google-service = { id = "com.google.gms.google-services", version.ref = "googleService" }
+
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
+firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebasePrefPlugin" }
 
 [bundles]
 voyager = ["voyager-core", "voyager-bs", "voyager-tab", "voyager-koin", "voyager-androidx", "voyager-transitions"]

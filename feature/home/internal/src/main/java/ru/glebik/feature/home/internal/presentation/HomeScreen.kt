@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -96,7 +95,7 @@ object HomeScreen : Screen {
 
                     ) {
                     item {
-                        TextTitleItem(title = "Новое")
+                        TextTitleItem(title = "Recommendations")
                     }
                     item {
                         LazyRow(
@@ -114,7 +113,7 @@ object HomeScreen : Screen {
                         }
                     }
                     item {
-                        TextTitleItem(title = "Недавнее")
+                        TextTitleItem(title = "New")
                     }
                     item {
                         LazyRow(
@@ -132,7 +131,7 @@ object HomeScreen : Screen {
                         }
                     }
                     item {
-                        TextTitleItem(title = "Недавнее")
+                        TextTitleItem(title = "Recent")
                     }
                     item {
                         LazyRow(
@@ -172,7 +171,7 @@ object HomeScreen : Screen {
                 style = AppTheme.typography.subHeader,
             )
             Text(
-                text = "Все",
+                text = "All",
                 style = AppTheme.typography.bodyBold,
             )
         }
@@ -199,7 +198,7 @@ object HomeScreen : Screen {
                     model = item.image,
                     loading = {
                         CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.padding(36.dp)
                         )
                     },
                     contentDescription = item.title,

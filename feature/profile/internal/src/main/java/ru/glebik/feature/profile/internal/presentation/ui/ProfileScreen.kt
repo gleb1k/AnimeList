@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,6 +37,10 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
+import com.google.firebase.analytics.logEvent
 import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BackAppBar
@@ -101,6 +106,18 @@ object ProfileScreen : Screen {
             Spacer(modifier = Modifier.height(16.dp))
             Stats(state.userData?.name ?: "")
             Spacer(modifier = Modifier.height(16.dp))
+            Button({
+                Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+                    param(FirebaseAnalytics.Param.SCREEN_NAME, "ProfileScreen")
+                }
+            }) {
+                Text("Send analytic")
+            }
+            Button(onClick = { throw RuntimeException("Test Crash") }) {
+                Text("Test Crash")
+            }
+
+
 //        FeedComponent() {
 //            selectedTabIndex = it
 //        }

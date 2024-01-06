@@ -2,12 +2,14 @@ package ru.glebik.feature.auth.internal.presentation.signup
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.core.registry.rememberScreen
@@ -79,38 +81,47 @@ object SignUpScreen : Screen {
             ) {
                 BackAppBar(onBackClick)
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(horizontal = AppTheme.padding.horizontalLargeBase),
                 ) {
                     Text(
-                        text = "Регистрация",
+                        text = "Sign up",
                         style = AppTheme.typography.headerBold
                     )
-
-                    NicknameTextField(
-                        value = state.queryNickname
+                    Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                    Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                    Column(
+                        Modifier.fillMaxWidth()
                     ) {
-                        onQueryNicknameChange(it)
-                    }
-
-                    EmailTextField(
-                        value = state.queryEmail
-                    ) {
-                        onQueryEmailChange(it)
-                    }
-                    PasswordTextField(
-                        value = state.queryPassword
-                    ) {
-                        onQueryPasswordChange(it)
-                    }
-
-                    BaseTextButton(
-                        text = "Зарегистрироваться"
-                    ) {
-                        onSignUpClick()
+                        Text(text = "Я НЕ ПОНИМАЮ ПОЧЕМУ ОТСТАЕТ КУРСОР :с")
+                        NicknameTextField(
+                            value = state.queryNickname
+                        ) {
+                            onQueryNicknameChange(it)
+                        }
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        EmailTextField(
+                            value = state.queryEmail
+                        ) {
+                            onQueryEmailChange(it)
+                        }
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        PasswordTextField(
+                            value = state.queryPassword
+                        ) {
+                            onQueryPasswordChange(it)
+                        }
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        Text(text = "Error: ${state.isError}")
+                        Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
+                        BaseTextButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "Sign up"
+                        ) {
+                            onSignUpClick()
+                        }
                     }
                 }
             }
