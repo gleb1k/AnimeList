@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="rating">Рейтинг</string>
-    <string name="status">Статус</string>
-    <string name="episodes">Эпизоды</string>
-    <string name="sourse">Источник</string>
-    <string name="aired">Выходит</string>
+    <string name="rating">Rating</string>
+    <string name="status">Status</string>
+    <string name="episodes">Episodes</string>
+    <string name="source">Source</string>
+    <string name="aired">Aired</string>
+    <string name="studio">Studio</string>
 
 </resources>

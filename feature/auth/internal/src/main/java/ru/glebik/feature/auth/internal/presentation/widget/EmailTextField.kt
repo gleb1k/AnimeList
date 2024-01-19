@@ -12,6 +12,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -24,9 +28,18 @@ fun EmailTextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     onValueChange: (String) -> Unit,
 ) {
+    //TODO Я НЕ ПОНИМАЮ ПОЧЕМУ КУРСОР ОТСТАЕТ, И Я НЕ ПОНИМАЮ КАК ЭТО ФИКСИТЬ
+    // https://issuetracker.google.com/issues/160257648
+    //ВОТ ТУТ ЛЮДИ МУЧАЛИСЬ ЕЩЕ 2 ГОДА НАЗАД
+    //Я ПОПРОБОВАЛ НЕ ВЫШЛО
+    //ЕСЛИ ПИСАТЬ МЕДЛЕННО - ТО ВСЕ ОК, НО КАК ТОЛЬКО УСКОРЯЕШЬ СКОРОСТЬ НАБОРА, КУРСОР СНОВА ОТСТАЕТ.
+    //МБ ДЕЛО В IO ПОТОКЕ? ИЛИ MVI KOTLIN ВСЕ СЛОМАЛ
+    var inputText by remember(value) { mutableStateOf(value) }
+
     TextField(
-        value = value,
+        value = inputText,
         onValueChange = {
+            inputText = it
             onValueChange.invoke(it)
         },
         modifier = Modifier

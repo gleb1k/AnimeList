@@ -29,6 +29,7 @@ android {
 dependencies {
 
     implementation(project(":feature:search:api"))
+    implementation(project(":feature:anime:api"))
 
     implementation(project(":core:widget"))
     implementation(project(":core:utils"))

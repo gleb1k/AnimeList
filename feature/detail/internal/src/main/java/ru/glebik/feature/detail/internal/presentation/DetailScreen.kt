@@ -2,8 +2,10 @@ package ru.glebik.feature.detail.internal.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,8 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +22,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -30,9 +29,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import coil.compose.AsyncImage
 import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.widget.BackAppBar
+import ru.glebik.core.widget.BaseAsyncImage
 import ru.glebik.core.widget.BaseSurface
 import ru.glebik.core.widget.template.DetailScreenModel
 import ru.glebik.feature.detail.internal.R
@@ -92,7 +91,6 @@ data class DetailScreen(
 //                }
 
                 val scrollState = rememberScrollState()
-
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -107,57 +105,50 @@ data class DetailScreen(
 
     @Composable
     fun AnimeItemWithDesc(state: DetailStore.State) {
-        if (state.anime != null) {
+        val item = state.anime
+
+        if (item != null) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize(),
             ) {
-                AsyncImage(
-                    model = state.anime.image,
-                    contentDescription = "Image",
-                    contentScale = ContentScale.Crop,
+                Box(
                     modifier = Modifier
-                        .padding(top = 16.dp)
                         .height(320.dp)
                         .width(180.dp)
                         .clip(RoundedCornerShape(2.dp))
-                )
-                Card(
-                    elevation = CardDefaults.cardElevation(4.dp),
+                ) {
+                    BaseAsyncImage(data = item.image)
+                }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-
-                    ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(topEnd = 16.dp, topStart = 16.dp))
+                        .background(AppTheme.colors.background)
+                ) {
+                    Spacer(modifier = Modifier.padding(vertical = 8.dp))
+                    Text(
+                        text = state.anime.titleEnglish ?: "",
+                        color = AppTheme.colors.primary,
+                        style = AppTheme.typography.bodyBold,
                         modifier = Modifier
-                            .fillMaxSize()
-                            .background(AppTheme.colors.background)
-                            .padding(vertical = 8.dp)
-
+                            .padding(horizontal = 8.dp)
+                    )
+//                    Text(
+//                        text = state.anime.title ?: "",
+//                        color = AppTheme.colors.primary,
+//                        style = AppTheme.typography.body,
+//                        modifier = Modifier
+//                            .padding(horizontal = 8.dp)
+//                            .padding(bottom = 8.dp)
+//                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .padding(bottom = 16.dp)
                     ) {
-                        Text(
-                            text = state.anime.titleEnglish ?: "",
-                            color = AppTheme.colors.primary,
-                            style = AppTheme.typography.body,
-                            modifier = Modifier
-                                .padding(horizontal = 8.dp)
-                        )
-                        Text(
-                            text = state.anime.title ?: "",
-                            color = AppTheme.colors.primary,
-                            style = AppTheme.typography.body,
-                            modifier = Modifier
-                                .padding(horizontal = 8.dp)
-                                .padding(bottom = 8.dp)
-                        )
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .padding(bottom = 16.dp)
-                        ) {
 //                            Text(
 //                                text = "${state.anime.year} y.",
 //                                color = AppTheme.colors.primary,
@@ -165,72 +156,55 @@ data class DetailScreen(
 //                                modifier = Modifier
 //                                    .padding(horizontal = 8.dp),
 //                            )
-                            Text(
-                                text = state.anime.type ?: "",
-                                color = AppTheme.colors.primary,
-                                style = AppTheme.typography.body,
-                                modifier = Modifier
-                                    .padding(horizontal = 8.dp),
-                            )
-                            Text(
-                                text = state.anime.score.toString(),
-                                color = AppTheme.colors.primary,
-                                style = AppTheme.typography.body,
-                                modifier = Modifier
-                                    .padding(horizontal = 8.dp),
-                            )
-                        }
-
-                        InfoDivider()
-                        InfoText(
-                            title = stringResource(R.string.rating),
-                            text = state.anime.rating ?: "0.0"
+                        Text(
+                            text = state.anime.type ?: "",
+                            color = AppTheme.colors.primary,
+                            style = AppTheme.typography.body,
+                            modifier = Modifier
+                                .padding(horizontal = 8.dp),
                         )
-                        InfoDivider()
-                        if (state.anime.airing == true)
-                            InfoText(
-                                title = stringResource(R.string.status),
-                                text = "Ongoing"
-                            )
-                        else if (state.anime.airing == false)
-                            InfoText(
-                                title = stringResource(R.string.status),
-                                text = "Finished"
-                            )
-                        InfoDivider()
-                        InfoText(
-                            title = stringResource(R.string.episodes),
-                            text = state.anime.episodes.toString()
+                        Text(
+                            text = state.anime.score.toString(),
+                            color = AppTheme.colors.primary,
+                            style = AppTheme.typography.body,
+                            modifier = Modifier
+                                .padding(horizontal = 8.dp),
                         )
-                        InfoDivider()
-                        InfoText(
-                            title = stringResource(R.string.sourse),
-                            text = state.anime.source ?: ""
-                        )
-                        InfoDivider()
-//                        InfoText(
-//                            title = stringResource(R.string.aired),
-//                            text = state.anime.aired.string ?: ""
-//                        )
-                        InfoDivider()
-
                     }
-                }
 
-            }
-            Card(
-                elevation = CardDefaults.cardElevation(4.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(AppTheme.colors.background)
-                        .padding(vertical = 8.dp)
-                ) {
+                    InfoDivider()
+                    InfoText(
+                        title = stringResource(R.string.rating),
+                        text = state.anime.rating ?: "0.0"
+                    )
+                    InfoDivider()
+                    if (state.anime.airing == true)
+                        InfoText(
+                            title = stringResource(R.string.status),
+                            text = "Ongoing"
+                        )
+                    else if (state.anime.airing == false)
+                        InfoText(
+                            title = stringResource(R.string.status),
+                            text = "Finished"
+                        )
+                    InfoDivider()
+                    InfoText(
+                        title = stringResource(R.string.episodes),
+                        text = state.anime.episodes.toString()
+                    )
+                    InfoDivider()
+                    InfoText(
+                        title = stringResource(R.string.source),
+                        text = state.anime.source ?: ""
+                    )
+                    InfoDivider()
+                    InfoText(
+                        title = stringResource(R.string.studio),
+                        text = "-"
+                    )
+                    InfoDivider()
+                    Spacer(modifier = Modifier.padding(8.dp))
                     Text(
                         text = state.anime.synopsis ?: "",
                         color = AppTheme.colors.primary,
@@ -240,7 +214,9 @@ data class DetailScreen(
                     )
                 }
             }
+
         }
+
     }
 
     @Composable

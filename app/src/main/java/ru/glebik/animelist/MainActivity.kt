@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     LocalSettingsEventBus provides settingsEventBus
                 ) {
                     Navigator(
-                        HomeScreen
+                        HomeScreen,
                     )
                 }
             }
