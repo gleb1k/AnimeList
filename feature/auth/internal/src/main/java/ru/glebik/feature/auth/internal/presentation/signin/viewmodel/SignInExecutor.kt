@@ -6,7 +6,6 @@ import ru.glebik.core.utils.ResultWrapper
 import ru.glebik.feature.auth.api.usecase.SignInUserUseCase
 
 internal class SignInExecutor(
-    // UseCase's
     private val signInUserUseCase: SignInUserUseCase
 ) : BaseExecutor<SignInStore.Intent, Nothing, SignInStore.State, SignInStoreFactory.Message, SignInStore.Label>() {
 

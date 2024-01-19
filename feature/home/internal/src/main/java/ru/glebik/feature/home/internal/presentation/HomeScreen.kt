@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -34,10 +35,13 @@ import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import coil.compose.SubcomposeAsyncImage
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+import kotlinx.coroutines.Dispatchers
 import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BaseSurface
+import ru.glebik.core.widget.R
 import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
 import ru.glebik.feature.home.internal.presentation.component.HomeAppBar
@@ -195,17 +199,16 @@ object HomeScreen : Screen {
                     .fillMaxWidth()
                     .aspectRatio(0.75f)
             ) {
-                SubcomposeAsyncImage(
-                    model = item.image,
-                    loading = {
-                        CircularProgressIndicator(
-                            modifier = Modifier.padding(36.dp)
-                        )
-                    },
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(item.image)
+                        .crossfade(true)
+                        .dispatcher(Dispatchers.IO)
+                        .build(),
+                    placeholder = painterResource(id = R.drawable.placeholder),
                     contentDescription = item.title,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxWidth()
-
                 )
             }
             Text(
@@ -233,17 +236,16 @@ object HomeScreen : Screen {
                     .fillMaxWidth()
                     .aspectRatio(0.75f)
             ) {
-                SubcomposeAsyncImage(
-                    model = item.image,
-                    loading = {
-                        CircularProgressIndicator(
-                            modifier = Modifier.padding(36.dp)
-                        )
-                    },
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(item.image)
+                        .crossfade(true)
+                        .dispatcher(Dispatchers.IO)
+                        .build(),
+                    placeholder = painterResource(id = R.drawable.placeholder),
                     contentDescription = item.title,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxWidth()
-
                 )
                 Text(
                     text = "${item.score ?: "0.0"}",

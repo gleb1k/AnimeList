@@ -40,6 +40,8 @@ dependencies {
     api(libs.koin)
     api(libs.koin.compose)
 
+    api(libs.kotlinx.collections.immutable)
+
     implementation(libs.voyager.core)
 
     implementation(libs.kotlinx.coroutines.core)

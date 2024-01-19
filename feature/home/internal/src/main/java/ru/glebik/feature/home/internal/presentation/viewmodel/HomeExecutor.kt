@@ -1,5 +1,6 @@
 package ru.glebik.feature.home.internal.presentation.viewmodel
 
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers
 import ru.glebik.core.presentation.BaseExecutor
 import ru.glebik.core.utils.ResultWrapper
@@ -34,7 +35,7 @@ internal class HomeExecutor(
         when (val response = getAnimeSeasonNowUseCase()) {
             is ResultWrapper.Success -> {
                 dispatch(
-                    HomeStoreFactory.Message.SetSeasonNow(response.data)
+                    HomeStoreFactory.Message.SetSeasonNow(response.data.toPersistentList())
                 )
             }
 
@@ -54,7 +55,7 @@ internal class HomeExecutor(
         when (val response = with(Dispatchers.IO) { getTopAnimeByScoreUseCase() }) {
             is ResultWrapper.Success -> {
                 dispatch(
-                    HomeStoreFactory.Message.SetTopByScore(response.data)
+                    HomeStoreFactory.Message.SetTopByScore(response.data.toPersistentList())
                 )
             }
 
@@ -74,7 +75,7 @@ internal class HomeExecutor(
         when (val response = getAnimeRecommendationsUseCase(AnimeConstants.ANIME_ID)) {
             is ResultWrapper.Success -> {
                 dispatch(
-                    HomeStoreFactory.Message.SetRecommendations(response.data)
+                    HomeStoreFactory.Message.SetRecommendations(response.data.toPersistentList())
                 )
             }
 

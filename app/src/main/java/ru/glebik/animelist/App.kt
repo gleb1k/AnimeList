@@ -18,6 +18,7 @@ import ru.glebik.feature.home.internal.di.homeModule
 import ru.glebik.feature.home.internal.di.homeScreenModule
 import ru.glebik.feature.profile.internal.di.profileModule
 import ru.glebik.feature.profile.internal.di.profileScreenModule
+import ru.glebik.feature.search.internal.di.searchModule
 import ru.glebik.feature.search.internal.di.searchScreenModule
 
 class App : Application() {
@@ -45,6 +46,7 @@ class App : Application() {
                     animeModule,
                     presentationModule,
                     authModule,
+                    searchModule,
 
                     homeModule,
                     profileModule,

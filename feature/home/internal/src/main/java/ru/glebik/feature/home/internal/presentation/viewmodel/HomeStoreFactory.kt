@@ -2,6 +2,7 @@ package ru.glebik.feature.home.internal.presentation.viewmodel
 
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import kotlinx.collections.immutable.PersistentList
 import ru.glebik.core.utils.ResultWrapper
 import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
@@ -34,15 +35,15 @@ internal class HomeStoreFactory(
     sealed interface Message {
         data object SetLoading : Message
         data class SetRecommendations(
-            val recommendationsList: List<AnimeRecommendation>
+            val recommendationsList: PersistentList<AnimeRecommendation>
         ) : Message
 
         data class SetSeasonNow(
-            val list: List<AnimeBaseModel>
+            val list: PersistentList<AnimeBaseModel>
         ) : Message
 
         data class SetTopByScore(
-            val list: List<AnimeBaseModel>
+            val list: PersistentList<AnimeBaseModel>
         ) : Message
 
         data class SetError(val error: ResultWrapper.Failed) : Message

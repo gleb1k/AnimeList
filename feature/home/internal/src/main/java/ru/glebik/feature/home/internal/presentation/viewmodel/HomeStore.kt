@@ -1,6 +1,8 @@
 package ru.glebik.feature.home.internal.presentation.viewmodel
 
 import com.arkivanov.mvikotlin.core.store.Store
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
 import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
 
@@ -9,9 +11,9 @@ interface HomeStore : Store<HomeStore.Intent, HomeStore.State, HomeStore.Label> 
 
     //домейн стейт
     data class State internal constructor(
-        val recommendations: List<AnimeRecommendation> = listOf(),
-        val seasonNow: List<AnimeBaseModel> = listOf(),
-        val topByScore: List<AnimeBaseModel> = listOf(),
+        val recommendations: PersistentList<AnimeRecommendation> = persistentListOf(),
+        val seasonNow: PersistentList<AnimeBaseModel> = persistentListOf(),
+        val topByScore: PersistentList<AnimeBaseModel> = persistentListOf(),
         val isLoading: Boolean = false,
         val isError: Boolean = false,
     )
