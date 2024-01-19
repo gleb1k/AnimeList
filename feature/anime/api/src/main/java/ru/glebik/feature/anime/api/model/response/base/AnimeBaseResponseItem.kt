@@ -1,5 +1,4 @@
-package ru.glebik.feature.anime.api.model.response.animesearch
-
+package ru.glebik.feature.anime.api.model.response.base
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,7 +15,7 @@ import ru.glebik.feature.anime.api.model.response.common.Trailer
 import ru.glebik.feature.anime.api.model.response.common.image.Images
 
 @Serializable
-data class AnimeSearchResponseItem(
+data class AnimeBaseResponseItem(
     @SerialName("mal_id")
     val malId: Int,
     @SerialName("url")
@@ -90,3 +89,45 @@ data class AnimeSearchResponseItem(
     @SerialName("demographics")
     val demographics: List<Demographic>?
 )
+// CONTAINS:
+
+//"data": [
+//{
+//    "mal_id": 0,
+//    "url": "string",
+//    "images": {},
+//    "trailer": {},
+//    "approved": true,
+//    "titles": [],
+//    "title": "string",
+//    "title_english": "string",
+//    "title_japanese": "string",
+//    "title_synonyms": [],
+//    "type": "TV",
+//    "source": "string",
+//    "episodes": 0,
+//    "status": "Finished Airing",
+//    "airing": true,
+//    "aired": {},
+//    "duration": "string",
+//    "rating": "G - All Ages",
+//    "score": 0,
+//    "scored_by": 0,
+//    "rank": 0,
+//    "popularity": 0,
+//    "members": 0,
+//    "favorites": 0,
+//    "synopsis": "string",
+//    "background": "string",
+//    "season": "summer",
+//    "year": 0,
+//    "broadcast": {},
+//    "producers": [],
+//    "licensors": [],
+//    "studios": [],
+//    "genres": [],
+//    "explicit_genres": [],
+//    "themes": [],
+//    "demographics": []
+//}
+//],

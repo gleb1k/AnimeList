@@ -14,6 +14,8 @@ val homeModule = module {
         HomeStoreFactory(
             storeFactory = get(),
             getAnimeRecommendationsUseCase = get(),
+            getAnimeSeasonNowUseCase = get(),
+            getTopAnimeByScoreUseCase = get()
         ).create()
     }
 

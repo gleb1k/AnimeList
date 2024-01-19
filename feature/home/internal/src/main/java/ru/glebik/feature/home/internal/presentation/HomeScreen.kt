@@ -38,6 +38,7 @@ import coil.compose.SubcomposeAsyncImage
 import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BaseSurface
+import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
 import ru.glebik.feature.home.internal.presentation.component.HomeAppBar
 import ru.glebik.feature.home.internal.presentation.viewmodel.HomeScreenModel
@@ -95,43 +96,43 @@ object HomeScreen : Screen {
 
                     ) {
                     item {
+                        TextTitleItem(title = "This Season Anime")
+                    }
+                    item {
+                        LazyRow(
+                            contentPadding = PaddingValues(horizontal = AppTheme.padding.horizontalLargeBase),
+                            horizontalArrangement = Arrangement.spacedBy(AppTheme.padding.horizontalBig),
+                        ) {
+                            items(
+                                state.seasonNow,
+                                key = {
+                                    it.malId
+                                },
+                            ) {
+                                AnimeItem(item = it, onRecommendationClick)
+                            }
+                        }
+                    }
+                    item {
+                        TextTitleItem(title = "Top Anime by Score")
+                    }
+                    item {
+                        LazyRow(
+                            contentPadding = PaddingValues(horizontal = AppTheme.padding.horizontalLargeBase),
+                            horizontalArrangement = Arrangement.spacedBy(AppTheme.padding.horizontalBig),
+                        ) {
+                            items(
+                                state.topByScore,
+                                key = {
+                                    it.malId
+                                },
+                            ) {
+                                AnimeItem(item = it, onRecommendationClick)
+                            }
+                        }
+                    }
+                    item {
                         TextTitleItem(title = "Recommendations")
-                    }
-                    item {
-                        LazyRow(
-                            contentPadding = PaddingValues(horizontal = AppTheme.padding.horizontalLargeBase),
-                            horizontalArrangement = Arrangement.spacedBy(AppTheme.padding.horizontalBig),
-                        ) {
-                            items(
-                                state.recommendations,
-                                key = {
-                                    it.malId
-                                },
-                            ) {
-                                AnimeRecommendationItem(item = it, onRecommendationClick)
-                            }
-                        }
-                    }
-                    item {
-                        TextTitleItem(title = "New")
-                    }
-                    item {
-                        LazyRow(
-                            contentPadding = PaddingValues(horizontal = AppTheme.padding.horizontalLargeBase),
-                            horizontalArrangement = Arrangement.spacedBy(AppTheme.padding.horizontalBig),
-                        ) {
-                            items(
-                                state.recommendations,
-                                key = {
-                                    it.malId
-                                },
-                            ) {
-                                AnimeRecommendationItem(item = it, onRecommendationClick)
-                            }
-                        }
-                    }
-                    item {
-                        TextTitleItem(title = "Recent")
                     }
                     item {
                         LazyRow(
@@ -206,8 +207,46 @@ object HomeScreen : Screen {
                     modifier = Modifier.fillMaxWidth()
 
                 )
+            }
+            Text(
+                text = item.title,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+
+    @Composable
+    private fun AnimeItem(
+        item: AnimeBaseModel,
+        navigate: (Int) -> Unit
+    ) {
+        Column(
+            modifier = Modifier
+                .width(120.dp)
+                .clip(RoundedCornerShape(topEnd = 8.dp, topStart = 8.dp))
+                .clickable { navigate(item.malId) }
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(0.75f)
+            ) {
+                SubcomposeAsyncImage(
+                    model = item.image,
+                    loading = {
+                        CircularProgressIndicator(
+                            modifier = Modifier.padding(36.dp)
+                        )
+                    },
+                    contentDescription = item.title,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxWidth()
+
+                )
                 Text(
-                    text = "0.0",
+                    text = "${item.score ?: "0.0"}",
                     color = Color.Black,
                     modifier = Modifier
                         .align(Alignment.TopEnd)
@@ -216,7 +255,7 @@ object HomeScreen : Screen {
                 )
             }
             Text(
-                text = item.title,
+                text = item.titleEnglish ?: item.title ?: "-",
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
                 modifier = Modifier.fillMaxWidth()

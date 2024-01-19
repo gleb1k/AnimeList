@@ -11,14 +11,19 @@ class HomeScreenModel(
 
     init {
         loadRecommendations()
+        loadSeason()
+        loadTopByScore()
     }
 
     fun navigate(id: Int) = store.accept(HomeStore.Intent.NavigateToDetails(id))
 
     private fun loadRecommendations() = store.accept(HomeStore.Intent.LoadRecommendations)
 
-}
+    private fun loadSeason() = store.accept(HomeStore.Intent.LoadSeasonNow)
 
+    private fun loadTopByScore() = store.accept(HomeStore.Intent.LoadTopByScore)
+
+}
 
 //class HomeScreenModel(
 //    private val store: HomeStore,

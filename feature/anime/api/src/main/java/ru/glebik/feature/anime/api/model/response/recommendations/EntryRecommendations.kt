@@ -5,6 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import ru.glebik.feature.anime.api.model.response.common.image.Images
 
+
 @Serializable
 data class EntryRecommendations(
     @SerialName("mal_id")

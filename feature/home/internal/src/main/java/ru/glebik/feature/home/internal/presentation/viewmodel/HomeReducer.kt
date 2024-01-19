@@ -21,5 +21,15 @@ internal class HomeReducer : Reducer<HomeStore.State, HomeStoreFactory.Message> 
             isLoading = false,
             recommendations = msg.recommendationsList
         )
+
+        is HomeStoreFactory.Message.SetSeasonNow -> copy(
+            isLoading = false,
+            seasonNow = msg.list
+        )
+
+        is HomeStoreFactory.Message.SetTopByScore -> copy(
+            isLoading = false,
+            topByScore = msg.list
+        )
     }
 }

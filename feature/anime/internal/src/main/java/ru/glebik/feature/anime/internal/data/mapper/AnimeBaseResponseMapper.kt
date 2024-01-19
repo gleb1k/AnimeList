@@ -1,12 +1,12 @@
 package ru.glebik.feature.anime.internal.data.mapper
 
 import ru.glebik.core.utils.mapper.ResponseMapper
-import ru.glebik.feature.anime.api.model.domain.AnimeSearch
-import ru.glebik.feature.anime.api.model.response.animesearch.AnimeSearchResponseItem
+import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
+import ru.glebik.feature.anime.api.model.response.base.AnimeBaseResponseItem
 
-class AnimeSearchResponseMapper : ResponseMapper<AnimeSearchResponseItem, AnimeSearch> {
-    override fun toDomain(response: AnimeSearchResponseItem): AnimeSearch {
-        return AnimeSearch(
+class AnimeBaseResponseMapper : ResponseMapper<AnimeBaseResponseItem, AnimeBaseModel> {
+    override fun toDomain(response: AnimeBaseResponseItem): AnimeBaseModel {
+        return AnimeBaseModel(
             malId = response.malId,
             url = response.url,
             image = response.images?.jpg?.imageUrl,
@@ -20,6 +20,6 @@ class AnimeSearchResponseMapper : ResponseMapper<AnimeSearchResponseItem, AnimeS
     }
 
     companion object {
-        const val TAG = "AnimeSearchResponseMapper"
+        const val TAG = "AnimeBaseResponseMapper"
     }
 }

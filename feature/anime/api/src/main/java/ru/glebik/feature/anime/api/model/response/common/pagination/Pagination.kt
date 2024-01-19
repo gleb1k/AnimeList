@@ -1,4 +1,4 @@
-package ru.glebik.feature.anime.api.model.response.animesearch
+package ru.glebik.feature.anime.api.model.response.common.pagination
 
 
 import kotlinx.serialization.SerialName
