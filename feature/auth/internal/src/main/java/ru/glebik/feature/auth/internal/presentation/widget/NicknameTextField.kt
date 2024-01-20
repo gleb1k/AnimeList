@@ -26,9 +26,7 @@ fun NicknameTextField(
 ) {
     TextField(
         value = value,
-        onValueChange = {
-            onValueChange.invoke(it)
-        },
+        onValueChange = onValueChange,
         modifier = Modifier
             .fillMaxWidth(),
         placeholder = {

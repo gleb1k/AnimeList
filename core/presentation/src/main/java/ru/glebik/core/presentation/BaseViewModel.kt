@@ -57,7 +57,7 @@ abstract class MviScreenModel<in Intent : Any, out State : Any, out Label : Any>
     private val binder: Binder
 
     init {
-        binder = bind(Dispatchers.IO) {
+        binder = bind(Dispatchers.Main.immediate) {
             store.states bindTo (::acceptState)
             store.labels bindTo (::acceptLabel)
         }

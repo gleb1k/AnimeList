@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 abstract class BaseExecutor<in Intent : Any, in Action : Any, in State : Any, Message : Any, Label : Any>(
-    mainContext: CoroutineContext = Dispatchers.Main,
+    mainContext: CoroutineContext = Dispatchers.Main.immediate,
 ) : CoroutineExecutor<Intent, Action, State, Message, Label>(mainContext = mainContext) {
 
     //TODO launchsafe

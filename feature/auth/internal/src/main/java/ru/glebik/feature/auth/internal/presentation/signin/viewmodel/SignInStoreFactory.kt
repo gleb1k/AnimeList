@@ -24,10 +24,10 @@ internal class SignInStoreFactory(
         ) {}
 
     sealed interface Message {
-        data object SetLoading : Message
-        data class SetError(val error: ResultWrapper.Failed) : Message
-
         data class SetQueryEmail(val query: String) : Message
         data class SetQueryPassword(val query: String) : Message
+
+        data object SetLoading : Message
+        data class SetError(val error: ResultWrapper.Failed) : Message
     }
 }

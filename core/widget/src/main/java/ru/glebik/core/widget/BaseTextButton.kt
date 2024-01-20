@@ -17,7 +17,7 @@ fun BaseTextButton(
     onClick: () -> Unit,
 ) {
     Button(
-        onClick = { onClick.invoke() },
+        onClick = onClick,
         modifier = modifier,
         shape = AppTheme.cornerShape.large,
         colors = ButtonDefaults.buttonColors(

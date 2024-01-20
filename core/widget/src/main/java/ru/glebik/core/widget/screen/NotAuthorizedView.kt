@@ -49,10 +49,9 @@ fun NotAuthorizedView(
                 Spacer(modifier = Modifier.height(AppTheme.padding.verticalBig))
                 BaseTextButton(
                     text = "Sign in",
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    onSignInClick.invoke()
-                }
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = onSignInClick
+                )
             }
         }
     }

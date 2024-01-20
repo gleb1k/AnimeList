@@ -17,6 +17,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import kotlinx.coroutines.Dispatchers
 import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BackAppBar
@@ -41,7 +42,7 @@ object SignInScreen : Screen {
         viewModel: SignInScreenModel = getScreenModel()
     ) {
         val navigator = LocalNavigator.currentOrThrow
-        val state by viewModel.state.collectAsStateWithLifecycle()
+        val state by viewModel.state.collectAsStateWithLifecycle(context = Dispatchers.Main.immediate)
         val label by viewModel.label.collectAsStateWithLifecycle(initialValue = null)
 
         val profileScreen = rememberScreen(SharedScreen.Profile)
@@ -86,7 +87,6 @@ object SignInScreen : Screen {
                     )
                     Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
                     Spacer(modifier = Modifier.height(AppTheme.padding.verticalLarge))
-                    //TODO Я НЕ ПОНИМАЮ ПОЧЕМУ ОТСТАЕТ ЗАПИСЬ, КАК ФИКСИТЬ ТОЖЕ ХЗ
                     Column(
                         Modifier.fillMaxWidth()
                     ) {

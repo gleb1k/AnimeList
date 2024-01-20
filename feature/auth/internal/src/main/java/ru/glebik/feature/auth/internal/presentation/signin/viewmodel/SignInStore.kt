@@ -13,11 +13,12 @@ interface SignInStore : Store<SignInStore.Intent, SignInStore.State, SignInStore
     )
 
     sealed interface Intent {
-        data object SignIn : Intent
-        data object NavigateToProfile : Intent
-
         data class OnQueryEmailChange(val query: String) : Intent
         data class OnQueryPasswordChange(val query: String) : Intent
+
+
+        data object SignIn : Intent
+        data object NavigateToProfile : Intent
     }
 
     sealed interface Label {

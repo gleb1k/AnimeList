@@ -8,6 +8,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material.icons.outlined.RemoveRedEye
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -37,12 +38,12 @@ fun PasswordTextField(
 
     TextField(
         value = value,
-        onValueChange = { onValueChange.invoke(it) },
+        onValueChange = onValueChange,
         modifier = Modifier
             .fillMaxWidth(),
         placeholder = {
             Text(
-                text = "Пароль",
+                text = "Password",
                 style = AppTheme.typography.hint
             )
         },
@@ -60,11 +61,18 @@ fun PasswordTextField(
         },
         trailingIcon = {
             IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                Icon(
-                    imageVector = Icons.Default.RemoveRedEye,
-                    contentDescription = "Show password",
-                    Modifier.size(24.dp)
-                )
+                if (!passwordVisible)
+                    Icon(
+                        imageVector = Icons.Default.RemoveRedEye,
+                        contentDescription = "Show password",
+                        Modifier.size(24.dp)
+                    )
+                else
+                    Icon(
+                        imageVector = Icons.Outlined.RemoveRedEye,
+                        contentDescription = "Hide password",
+                        Modifier.size(24.dp)
+                    )
             }
         },
         colors = TextFieldDefaults.colors(

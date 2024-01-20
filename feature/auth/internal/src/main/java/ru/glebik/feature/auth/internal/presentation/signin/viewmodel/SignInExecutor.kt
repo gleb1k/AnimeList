@@ -13,15 +13,15 @@ internal class SignInExecutor(
         intent: SignInStore.Intent,
         getState: () -> SignInStore.State,
     ) = when (intent) {
-        is SignInStore.Intent.SignIn -> with(Dispatchers.IO) {
-            signIn(getState())
-        }
-
         is SignInStore.Intent.OnQueryEmailChange -> dispatch(
             SignInStoreFactory.Message.SetQueryEmail(
                 intent.query
             )
         )
+
+        is SignInStore.Intent.SignIn -> with(Dispatchers.IO) {
+            signIn(getState())
+        }
 
         is SignInStore.Intent.OnQueryPasswordChange -> dispatch(
             SignInStoreFactory.Message.SetQueryPassword(
@@ -31,6 +31,7 @@ internal class SignInExecutor(
 
         SignInStore.Intent.NavigateToProfile -> publish(SignInStore.Label.NavigateToProfile)
     }
+
 
     private suspend fun signIn(state: SignInStore.State) {
         dispatch(SignInStoreFactory.Message.SetLoading)

@@ -16,7 +16,7 @@ fun BackAppBar(
     TopAppBar(
         title = {},
         navigationIcon = {
-            IconButton(onClick = { onBackClick() }) {
+            IconButton(onClick = onBackClick) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
         },

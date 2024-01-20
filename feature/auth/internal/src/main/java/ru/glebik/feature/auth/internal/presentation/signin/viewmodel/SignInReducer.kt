@@ -7,6 +7,10 @@ internal class SignInReducer : Reducer<SignInStore.State, SignInStoreFactory.Mes
     override fun SignInStore.State.reduce(
         msg: SignInStoreFactory.Message,
     ) = when (msg) {
+        is SignInStoreFactory.Message.SetQueryEmail -> copy(queryEmail = msg.query)
+
+        is SignInStoreFactory.Message.SetQueryPassword -> copy(queryPassword = msg.query)
+
         is SignInStoreFactory.Message.SetError -> copy(
             isError = true,
             isLoading = false,
@@ -15,14 +19,6 @@ internal class SignInReducer : Reducer<SignInStore.State, SignInStoreFactory.Mes
         is SignInStoreFactory.Message.SetLoading -> copy(
             isLoading = true,
             isError = false,
-        )
-
-        is SignInStoreFactory.Message.SetQueryEmail -> copy(
-            queryEmail = msg.query
-        )
-
-        is SignInStoreFactory.Message.SetQueryPassword -> copy(
-            queryPassword = msg.query
         )
     }
 }
