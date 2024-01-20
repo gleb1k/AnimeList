@@ -8,7 +8,7 @@ import org.koin.core.context.GlobalContext.startKoin
 import ru.glebik.core.db.di.databaseModule
 import ru.glebik.core.network.di.networkModule
 import ru.glebik.core.presentation.di.presentationModule
-import ru.glebik.core.utils.dispatchersModule
+import ru.glebik.core.utils.di.dispatchersModule
 import ru.glebik.feature.anime.internal.di.animeModule
 import ru.glebik.feature.auth.internal.di.authModule
 import ru.glebik.feature.auth.internal.di.authScreenModule

@@ -4,7 +4,7 @@ import cafe.adriel.voyager.core.registry.screenModule
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import ru.glebik.core.navigation.SharedScreen
-import ru.glebik.core.utils.CoroutineDispatchers
+import ru.glebik.core.utils.di.CoroutineDispatchers
 import ru.glebik.core.utils.mapper.DaoMapper
 import ru.glebik.feature.auth.api.model.UserData
 import ru.glebik.feature.auth.api.model.UserEntity

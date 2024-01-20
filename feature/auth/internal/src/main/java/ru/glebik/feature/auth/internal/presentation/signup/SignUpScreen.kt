@@ -17,6 +17,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import kotlinx.coroutines.Dispatchers
 import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BackAppBar
@@ -41,7 +42,7 @@ object SignUpScreen : Screen {
         viewModel: SignUpScreenModel = getScreenModel()
     ) {
         val navigator = LocalNavigator.currentOrThrow
-        val state by viewModel.state.collectAsStateWithLifecycle()
+        val state by viewModel.state.collectAsStateWithLifecycle(context = Dispatchers.Main.immediate)
         val label by viewModel.label.collectAsStateWithLifecycle(initialValue = null)
 
         val signInScreen = rememberScreen(SharedScreen.SignIn)
@@ -52,8 +53,6 @@ object SignUpScreen : Screen {
                 navigator.push(signInScreen)
             }
         }
-
-
 
         SignUpView(
             state,
@@ -95,7 +94,6 @@ object SignUpScreen : Screen {
                     Column(
                         Modifier.fillMaxWidth()
                     ) {
-                        Text(text = "Я НЕ ПОНИМАЮ ПОЧЕМУ ОТСТАЕТ КУРСОР :с")
                         NicknameTextField(
                             value = state.queryNickname
                         ) {

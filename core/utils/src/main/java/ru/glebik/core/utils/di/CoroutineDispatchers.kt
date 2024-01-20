@@ -1,4 +1,4 @@
-package ru.glebik.core.utils
+package ru.glebik.core.utils.di
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

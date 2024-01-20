@@ -49,7 +49,7 @@ object SignInScreen : Screen {
 
         when (label) {
             null -> Unit
-            SignInStore.Label.NavigateToProfile -> navigator.push(profileScreen)
+            SignInStore.Label.NavigateToProfile -> navigator.popUntil { it == profileScreen }
         }
 
         SignInView(

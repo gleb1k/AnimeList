@@ -7,6 +7,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import cafe.adriel.voyager.navigator.Navigator
+import cafe.adriel.voyager.transitions.ScaleTransition
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
@@ -43,7 +44,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Navigator(
                         HomeScreen,
-                    )
+                    ) {
+                        ScaleTransition(navigator = it)
+                    }
                 }
             }
         }

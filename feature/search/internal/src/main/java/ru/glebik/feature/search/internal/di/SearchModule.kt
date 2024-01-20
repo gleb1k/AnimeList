@@ -4,7 +4,7 @@ import cafe.adriel.voyager.core.registry.screenModule
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import ru.glebik.core.navigation.SharedScreen
-import ru.glebik.core.utils.CoroutineDispatchers
+import ru.glebik.core.utils.di.CoroutineDispatchers
 import ru.glebik.feature.search.internal.presentation.SearchScreen
 import ru.glebik.feature.search.internal.presentation.viewmodel.SearchScreenModel
 import ru.glebik.feature.search.internal.presentation.viewmodel.SearchStore

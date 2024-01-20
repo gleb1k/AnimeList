@@ -2,7 +2,7 @@ package ru.glebik.feature.anime.internal.di
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import ru.glebik.core.utils.CoroutineDispatchers
+import ru.glebik.core.utils.di.CoroutineDispatchers
 import ru.glebik.core.utils.mapper.ResponseMapper
 import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.anime.api.model.domain.AnimeFull
