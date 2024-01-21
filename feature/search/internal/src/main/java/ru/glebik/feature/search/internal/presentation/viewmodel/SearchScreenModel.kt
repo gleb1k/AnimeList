@@ -9,8 +9,12 @@ class SearchScreenModel(
     store
 ) {
 
-    fun navigate(id: Int) = store.accept(SearchStore.Intent.NavigateToDetails(id))
+    fun navigateToDetails(id: Int) = store.accept(SearchStore.Intent.NavigateToDetails(id))
 
-    fun load(query: String) = store.accept(SearchStore.Intent.Search(query))
+    fun onQuerySearchChange(query: String) =
+        store.accept(SearchStore.Intent.OnQuerySearchChange(query))
 
+    fun onSearchClick(query: String) {
+        store.accept(SearchStore.Intent.Search(query = query))
+    }
 }

@@ -3,7 +3,6 @@ package ru.glebik.feature.auth.internal.presentation.widget
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
@@ -29,8 +28,6 @@ import ru.glebik.core.designsystem.theme.AppTheme
 @Composable
 fun PasswordTextField(
     value: String = "",
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
     onValueChange: (String) -> Unit,
 ) {
 
@@ -47,8 +44,7 @@ fun PasswordTextField(
                 style = AppTheme.typography.hint
             )
         },
-        keyboardOptions = keyboardOptions,
-        keyboardActions = keyboardActions,
+        keyboardOptions = KeyboardOptions(),
         shape = RoundedCornerShape(18.dp),
         singleLine = true,
         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
