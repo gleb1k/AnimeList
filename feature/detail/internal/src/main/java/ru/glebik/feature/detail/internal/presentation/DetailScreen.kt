@@ -33,6 +33,7 @@ import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.widget.BackAppBar
 import ru.glebik.core.widget.BaseAsyncImage
 import ru.glebik.core.widget.BaseSurface
+import ru.glebik.core.widget.screen.LoadingView
 import ru.glebik.core.widget.template.DetailScreenModel
 import ru.glebik.feature.detail.internal.R
 import ru.glebik.feature.detail.internal.presentation.viewmodel.DetailStore
@@ -55,14 +56,17 @@ data class DetailScreen(
         val state by viewModel.state.collectAsStateWithLifecycle()
         val label by viewModel.label.collectAsStateWithLifecycle(initialValue = null)
 
-        LaunchedEffect(key1 = state.anime) {
+        LaunchedEffect(Unit) {
             viewModel.load(id)
         }
 
-        DetailView(
-            state = state,
-            navigator::pop,
-        )
+        if (state.isLoading)
+            LoadingView()
+        else
+            DetailView(
+                state = state,
+                navigator::pop,
+            )
     }
 
 

@@ -8,13 +8,13 @@ class ProfileScreenModel(
 ) : MviScreenModel<ProfileStore.Intent, ProfileStore.State, ProfileStore.Label>(
     store
 ) {
-
-    init {
-        checkIsAuth()
-
-        if (state.value.isAuth)
-            loadUserData()
-    }
+//
+//    init {
+//        checkIsAuth()
+//
+//        if (state.value.isAuth)
+//            loadUserData()
+//    }
 
     fun loadUserData() = store.accept(ProfileStore.Intent.LoadUserData)
 

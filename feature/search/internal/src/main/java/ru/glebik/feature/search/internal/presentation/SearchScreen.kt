@@ -31,6 +31,7 @@ import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BaseAsyncImage
 import ru.glebik.core.widget.BaseSurface
+import ru.glebik.core.widget.screen.LoadingView
 import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.search.internal.presentation.viewmodel.SearchScreenModel
 import ru.glebik.feature.search.internal.presentation.viewmodel.SearchStore
@@ -58,14 +59,16 @@ object SearchScreen : Screen {
                 navigator.push(rememberScreen(SharedScreen.Detail(id = (label as SearchStore.Label.NavigateToDetails).id)))
             }
         }
-
-        SearchView(
-            state,
-            navigator,
-            onQuerySearchChange = viewModel::onQuerySearchChange,
-            onSearchClick = viewModel::onSearchClick,
-            onItemClick = viewModel::navigateToDetails
-        )
+        if (state.isLoading)
+            LoadingView()
+        else
+            SearchView(
+                state,
+                navigator,
+                onQuerySearchChange = viewModel::onQuerySearchChange,
+                onSearchClick = viewModel::onSearchClick,
+                onItemClick = viewModel::navigateToDetails
+            )
     }
 
     @Composable

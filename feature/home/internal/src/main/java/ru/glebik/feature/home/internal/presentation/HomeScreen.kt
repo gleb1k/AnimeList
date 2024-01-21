@@ -1,5 +1,6 @@
 package ru.glebik.feature.home.internal.presentation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -42,6 +43,7 @@ import ru.glebik.core.designsystem.theme.AppTheme
 import ru.glebik.core.navigation.SharedScreen
 import ru.glebik.core.widget.BaseSurface
 import ru.glebik.core.widget.R
+import ru.glebik.core.widget.screen.LoadingView
 import ru.glebik.feature.anime.api.model.domain.AnimeBaseModel
 import ru.glebik.feature.anime.api.model.domain.AnimeRecommendation
 import ru.glebik.feature.home.internal.presentation.component.HomeAppBar
@@ -64,25 +66,32 @@ object HomeScreen : Screen {
         val state by viewModel.state.collectAsStateWithLifecycle()
         val label by viewModel.label.collectAsStateWithLifecycle(initialValue = null)
 
+        //TODO 3 раза вызывается почему-то, хз как фиксить
         when (label) {
             null -> Unit
             is HomeStore.Label.NavigateToDetails -> {
-                navigator.push(rememberScreen(SharedScreen.Detail(id = (label as HomeStore.Label.NavigateToDetails).id)))
+                Log.e("HomeStore.Label.NavigateToDetails", "navigated to detail")
+                val detailScreen =
+                    rememberScreen(SharedScreen.Detail(id = (label as HomeStore.Label.NavigateToDetails).id))
+                navigator.push(detailScreen)
             }
         }
 
-        HomeView(
-            state = state,
-            navigator,
-            onRecommendationClick = viewModel::navigate
-        )
+        if (state.isLoading)
+            LoadingView()
+        else
+            HomeView(
+                state = state,
+                navigator,
+                onItemClick = viewModel::navigateToDetail
+            )
     }
 
     @Composable
     private fun HomeView(
         state: HomeStore.State,
         navigator: Navigator,
-        onRecommendationClick: (Int) -> Unit,
+        onItemClick: (Int) -> Unit,
     ) {
         BaseSurface {
             Column(
@@ -113,7 +122,7 @@ object HomeScreen : Screen {
                                     it.malId
                                 },
                             ) {
-                                AnimeItem(item = it, onRecommendationClick)
+                                AnimeItem(item = it, onItemClick)
                             }
                         }
                     }
@@ -131,7 +140,7 @@ object HomeScreen : Screen {
                                     it.malId
                                 },
                             ) {
-                                AnimeItem(item = it, onRecommendationClick)
+                                AnimeItem(item = it, onItemClick)
                             }
                         }
                     }
@@ -149,7 +158,7 @@ object HomeScreen : Screen {
                                     it.malId
                                 },
                             ) {
-                                AnimeRecommendationItem(item = it, onRecommendationClick)
+                                AnimeRecommendationItem(item = it, onItemClick)
                             }
                         }
                     }

@@ -17,18 +17,17 @@ internal class ProfileExecutor(
         intent: ProfileStore.Intent,
         getState: () -> ProfileStore.State,
     ) = when (intent) {
-        is ProfileStore.Intent.LoadUserData -> with(ioDispatcher) {
-            loadUserData()
-        }
+        is ProfileStore.Intent.LoadUserData -> loadUserData()
 
-        ProfileStore.Intent.CheckIsAuthorized -> with(ioDispatcher) {
-            checkIsUserAuthorized()
-        }
+
+        ProfileStore.Intent.CheckIsAuthorized -> checkIsUserAuthorized()
+
     }
 
+    //todo все поломалось,,,
     private suspend fun loadUserData() {
         dispatch(ProfileStoreFactory.Message.SetLoading)
-        when (val response = getUserDataUserUseCase(UserToken.id ?: -1)) {
+        when (val response = with(ioDispatcher) { getUserDataUserUseCase(UserToken.id ?: -1) }) {
             is ResultWrapper.Success -> {
                 dispatch(
                     ProfileStoreFactory.Message.SetUser(response.data)
@@ -48,7 +47,7 @@ internal class ProfileExecutor(
 
     private suspend fun checkIsUserAuthorized() {
         dispatch(ProfileStoreFactory.Message.SetLoading)
-        when (val response = isUserAuthorizedUseCase()) {
+        when (val response = with(ioDispatcher) { isUserAuthorizedUseCase() }) {
             is ResultWrapper.Success -> {
                 dispatch(
                     ProfileStoreFactory.Message.SetIsAuth(response.data)

@@ -1,5 +1,6 @@
 package ru.glebik.feature.profile.internal.presentation.ui
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -69,10 +70,8 @@ object ProfileScreen : Screen {
         val signUpScreen = rememberScreen(SharedScreen.SignUp)
 
         LaunchedEffect(key1 = Unit) {
+            Log.e("ProfileScreen", "LaunchedEffect ")
             viewModel.checkIsAuth()
-
-            if (state.isAuth)
-                viewModel.loadUserData()
         }
 
         if (!state.isAuth) {
@@ -82,6 +81,7 @@ object ProfileScreen : Screen {
                 navigator::pop
             )
         } else {
+            viewModel.loadUserData()
             ProfileView(
                 state,
                 navigator::pop
@@ -104,7 +104,7 @@ object ProfileScreen : Screen {
             BackAppBar(onBackClick)
             Header()
             Spacer(modifier = Modifier.height(16.dp))
-            Stats(state.userData?.name ?: "")
+            Stats(state.userData?.name ?: "-")
             Spacer(modifier = Modifier.height(16.dp))
             Button({
                 Firebase.analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {

@@ -15,7 +15,7 @@ class HomeScreenModel(
         loadTopByScore()
     }
 
-    fun navigate(id: Int) = store.accept(HomeStore.Intent.NavigateToDetails(id))
+    fun navigateToDetail(id: Int) = store.accept(HomeStore.Intent.NavigateToDetails(id))
 
     private fun loadRecommendations() = store.accept(HomeStore.Intent.LoadRecommendations)
 
